@@ -220,7 +220,9 @@ package gs
          for(_loc4_ in _all)
          {
             _loc3_ = false;
-            for(_loc5_ in _all[_loc4_])
+            var _loc9_:int = 0;
+            var _loc10_:* = _all[_loc4_];
+            for(_loc5_ in _loc10_)
             {
                _loc3_ = true;
             }
@@ -298,8 +300,8 @@ package gs
          var _loc7_:ColorTransform = null;
          var _loc8_:ColorTransform = null;
          var _loc9_:Object = null;
-         var _loc5_:Object = this.vars;
-         if(_loc5_.isTV == true)
+         var _loc5_:Object;
+         if((_loc5_ = this.vars).isTV == true)
          {
             _loc5_ = _loc5_.exposedProps;
          }
@@ -388,8 +390,8 @@ package gs
             while(_loc4_ > -1)
             {
                _loc9_ = this.tweens[_loc4_];
-               _loc9_.s = _loc9_.s + _loc9_.c;
-               _loc9_.c = _loc9_.c * -1;
+               _loc9_.s += _loc9_.c;
+               _loc9_.c *= -1;
                _loc4_--;
             }
          }
@@ -428,7 +430,7 @@ package gs
             }
             if(this.duration == 0.001)
             {
-               this.startTime = this.startTime - 1;
+               --this.startTime;
             }
             return true;
          }
@@ -453,8 +455,7 @@ package gs
          _loc5_ = this.tweens.length - 1;
          while(_loc5_ > -1)
          {
-            _loc4_ = this.tweens[_loc5_];
-            _loc4_.o[_loc4_.p] = _loc4_.s + _loc3_ * _loc4_.c;
+            (_loc4_ = this.tweens[_loc5_]).o[_loc4_.p] = _loc4_.s + _loc3_ * _loc4_.c;
             _loc5_--;
          }
          if(this._hst)

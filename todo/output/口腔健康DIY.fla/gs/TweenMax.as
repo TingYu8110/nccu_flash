@@ -165,21 +165,20 @@ package gs
          var _loc2_:Object = {};
          var _loc3_:Object = param1.info.target;
          param1.info.target = _loc2_;
-         param1.target.t = param1.target.t + 0.01;
+         param1.target.t += 0.01;
          bezierProxy(param1);
          var _loc4_:Array = param1.info.orientToBezier;
          var _loc10_:uint = 0;
          while(_loc10_ < _loc4_.length)
          {
-            _loc8_ = _loc4_[_loc10_];
-            _loc9_ = Number(_loc8_[3]) || Number(0);
+            _loc9_ = Number((_loc8_ = _loc4_[_loc10_])[3]) || Number(0);
             _loc6_ = _loc2_[_loc8_[0]] - _loc3_[_loc8_[0]];
             _loc7_ = _loc2_[_loc8_[1]] - _loc3_[_loc8_[1]];
             _loc3_[_loc8_[2]] = Math.atan2(_loc7_,_loc6_) * _RAD2DEG + _loc9_;
             _loc10_++;
          }
          param1.info.target = _loc3_;
-         param1.target.t = param1.target.t - 0.01;
+         param1.target.t -= 0.01;
       }
       
       public static function pauseAll(param1:Boolean = true, param2:Boolean = false) : void
@@ -225,8 +224,7 @@ package gs
          _loc9_ = 0;
          while(_loc9_ < param1.length)
          {
-            _loc5_ = param1[_loc9_];
-            _loc8_ = Number(_loc5_.time) || Number(0);
+            _loc8_ = Number((_loc5_ = param1[_loc9_]).time) || Number(0);
             _loc10_ = {};
             for(_loc11_ in _loc5_)
             {
@@ -250,7 +248,7 @@ package gs
                _loc10_.overwrite = false;
             }
             _loc3_[_loc3_.length] = new TweenMax(_loc6_,_loc8_,_loc10_);
-            _loc4_ = _loc4_ + (_loc8_ + _loc7_);
+            _loc4_ += _loc8_ + _loc7_;
             _loc9_++;
          }
          return _loc3_;
@@ -283,8 +281,8 @@ package gs
       
       public static function killAll(param1:Boolean = false, param2:Boolean = true, param3:Boolean = true) : void
       {
-         var _loc4_:Array = getAllTweens();
-         var _loc5_:int = _loc4_.length - 1;
+         var _loc4_:Array;
+         var _loc5_:int = (_loc4_ = getAllTweens()).length - 1;
          while(_loc5_ > -1)
          {
             if(_loc4_[_loc5_].target is Function == param3 || _loc4_[_loc5_].target is Function != param2)
@@ -304,8 +302,8 @@ package gs
       
       public static function changePause(param1:Boolean, param2:Boolean = true, param3:Boolean = false) : void
       {
-         var _loc4_:Array = getAllTweens();
-         var _loc5_:int = _loc4_.length - 1;
+         var _loc4_:Array;
+         var _loc5_:int = (_loc4_ = getAllTweens()).length - 1;
          while(_loc5_ > -1)
          {
             if(_loc4_[_loc5_] is TweenMax && (_loc4_[_loc5_].target is Function == param3 || _loc4_[_loc5_].target is Function != param2))
@@ -517,7 +515,7 @@ package gs
          var _loc5_:Object = null;
          var _loc6_:Object = null;
          var _loc7_:Array = null;
-         param2 = param2 + " hexColors bezier bezierThrough orientToBezier quaternions onCompleteAll onCompleteAllParams ";
+         param2 += " hexColors bezier bezierThrough orientToBezier quaternions onCompleteAll onCompleteAllParams ";
          var _loc8_:Function = bezierProxy;
          if(this.vars.orientToBezier == true)
          {
@@ -661,7 +659,7 @@ package gs
             }
             if(this.duration == 0.001)
             {
-               this.startTime = this.startTime - 1;
+               --this.startTime;
             }
             return true;
          }
@@ -758,10 +756,10 @@ package gs
          if(this._pauseTime != -1)
          {
             _loc1_ = _curTime - this._pauseTime;
-            this.initTime = this.initTime + _loc1_;
+            this.initTime += _loc1_;
             if(!isNaN(this.startTime))
             {
-               this.startTime = this.startTime + _loc1_;
+               this.startTime += _loc1_;
             }
             this._pauseTime = -1;
             if((_curTime - this.initTime) / 1000 > this.delay)

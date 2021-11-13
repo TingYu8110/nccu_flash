@@ -61,7 +61,7 @@ package gs
          {
             return param1;
          }
-         param2 = param2 + 0.01;
+         param2 += 0.01;
          var _loc3_:Array = [param2,0,0,0,128 * (1 - param2),0,param2,0,0,128 * (1 - param2),0,0,param2,0,128 * (1 - param2),0,0,0,1,0];
          return applyMatrix(_loc3_,param1);
       }
@@ -79,8 +79,8 @@ package gs
          var _loc4_:Number = (param2 >> 16 & 255) / 255;
          var _loc5_:Number = (param2 >> 8 & 255) / 255;
          var _loc6_:Number = (param2 & 255) / 255;
-         var _loc7_:Number = 1 - param3;
-         var _loc8_:Array = [_loc7_ + param3 * _loc4_ * _lumR,param3 * _loc4_ * _lumG,param3 * _loc4_ * _lumB,0,0,param3 * _loc5_ * _lumR,_loc7_ + param3 * _loc5_ * _lumG,param3 * _loc5_ * _lumB,0,0,param3 * _loc6_ * _lumR,param3 * _loc6_ * _lumG,_loc7_ + param3 * _loc6_ * _lumB,0,0,0,0,0,1,0];
+         var _loc7_:Number;
+         var _loc8_:Array = [(_loc7_ = 1 - param3) + param3 * _loc4_ * _lumR,param3 * _loc4_ * _lumG,param3 * _loc4_ * _lumB,0,0,param3 * _loc5_ * _lumR,_loc7_ + param3 * _loc5_ * _lumG,param3 * _loc5_ * _lumB,0,0,param3 * _loc6_ * _lumR,param3 * _loc6_ * _lumG,_loc7_ + param3 * _loc6_ * _lumB,0,0,0,0,0,1,0];
          return applyMatrix(_loc8_,param1);
       }
       
@@ -136,7 +136,7 @@ package gs
                _loc3_[_loc4_ + _loc7_] = param1[_loc4_] * param2[_loc7_] + param1[_loc4_ + 1] * param2[_loc7_ + 5] + param1[_loc4_ + 2] * param2[_loc7_ + 10] + param1[_loc4_ + 3] * param2[_loc7_ + 15] + _loc5_;
                _loc7_++;
             }
-            _loc4_ = _loc4_ + 5;
+            _loc4_ += 5;
             _loc6_++;
          }
          return _loc3_;
@@ -164,7 +164,7 @@ package gs
          {
             return param1;
          }
-         param2 = param2 * (Math.PI / 180);
+         param2 *= Math.PI / 180;
          var _loc3_:Number = Math.cos(param2);
          var _loc4_:Number = Math.sin(param2);
          var _loc5_:Array = [_lumR + _loc3_ * (1 - _lumR) + _loc4_ * -_lumR,_lumG + _loc3_ * -_lumG + _loc4_ * -_lumG,_lumB + _loc3_ * -_lumB + _loc4_ * (1 - _lumB),0,0,_lumR + _loc3_ * -_lumR + _loc4_ * 0.143,_lumG + _loc3_ * (1 - _lumG) + _loc4_ * 0.14,_lumB + _loc3_ * -_lumB + _loc4_ * -0.283,0,0,_lumR + _loc3_ * -_lumR + _loc4_ * -(1 - _lumR),_lumG + _loc3_ * -_lumG + _loc4_ * _lumG,_lumB + _loc3_ * (1 - _lumB) + _loc4_ * _lumB,0,0,0,0,0,1,0,0,0,0,0,1];
@@ -194,7 +194,7 @@ package gs
          this._clrsa = [];
          this._filters = [];
          this._matrix = _idMatrix.slice();
-         param2 = param2 + " blurFilter glowFilter colorMatrixFilter dropShadowFilter bevelFilter ";
+         param2 += " blurFilter glowFilter colorMatrixFilter dropShadowFilter bevelFilter ";
          if(_isDisplayObject)
          {
             if(this.vars.blurFilter != null)
@@ -272,12 +272,12 @@ package gs
                while(_loc3_ > -1)
                {
                   _loc6_ = this._clrsa[_loc3_];
-                  _loc6_.sr = _loc6_.sr + _loc6_.cr;
-                  _loc6_.cr = _loc6_.cr * -1;
-                  _loc6_.sg = _loc6_.sg + _loc6_.cg;
-                  _loc6_.cg = _loc6_.cg * -1;
-                  _loc6_.sb = _loc6_.sb + _loc6_.cb;
-                  _loc6_.cb = _loc6_.cb * -1;
+                  _loc6_.sr += _loc6_.cr;
+                  _loc6_.cr *= -1;
+                  _loc6_.sg += _loc6_.cg;
+                  _loc6_.cg *= -1;
+                  _loc6_.sb += _loc6_.cb;
+                  _loc6_.cb *= -1;
                   _loc6_.f[_loc6_.p] = _loc6_.sr << 16 | _loc6_.sg << 8 | _loc6_.sb;
                   _loc3_--;
                }
@@ -313,8 +313,7 @@ package gs
          _loc5_ = this.tweens.length - 1;
          while(_loc5_ > -1)
          {
-            _loc4_ = this.tweens[_loc5_];
-            _loc4_.o[_loc4_.p] = _loc4_.s + _loc3_ * _loc4_.c;
+            (_loc4_ = this.tweens[_loc5_]).o[_loc4_.p] = _loc4_.s + _loc3_ * _loc4_.c;
             _loc5_--;
          }
          if(this._hf)
@@ -322,8 +321,7 @@ package gs
             _loc5_ = this._clrsa.length - 1;
             while(_loc5_ > -1)
             {
-               _loc4_ = this._clrsa[_loc5_];
-               _loc6_ = _loc4_.sr + _loc3_ * _loc4_.cr;
+               _loc6_ = (_loc4_ = this._clrsa[_loc5_]).sr + _loc3_ * _loc4_.cr;
                _loc7_ = _loc4_.sg + _loc3_ * _loc4_.cg;
                _loc8_ = _loc4_.sb + _loc3_ * _loc4_.cb;
                _loc4_.f[_loc4_.p] = _loc6_ << 16 | _loc7_ << 8 | _loc8_;

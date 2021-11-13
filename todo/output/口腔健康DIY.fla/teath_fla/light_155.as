@@ -9,12 +9,6 @@ package teath_fla
       public function light_155()
       {
          super();
-         addFrameScript(0,this.frame1);
-      }
-      
-      function frame1() : *
-      {
-         stop();
       }
    }
 }

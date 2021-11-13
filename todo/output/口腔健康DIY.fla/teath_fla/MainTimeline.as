@@ -26,30 +26,6 @@ package teath_fla
       public function MainTimeline()
       {
          super();
-         addFrameScript(0,this.frame1,1,this.frame2);
-      }
-      
-      function frame2() : *
-      {
-         stop();
-         this.right_mc.visible = true;
-         this.wrong_mc.visible = true;
-         this.right_mc.buttonMode = true;
-         this.wrong_mc.buttonMode = true;
-         this.replay_mc.buttonMode = true;
-         this._timer = new Timer(500,1);
-         this.right_mc.addEventListener(MouseEvent.CLICK,this.timercontrol);
-         this.wrong_mc.addEventListener(MouseEvent.CLICK,this.timercontrol);
-         this.right_mc.addEventListener(MouseEvent.ROLL_OVER,this.bigger);
-         this.wrong_mc.addEventListener(MouseEvent.ROLL_OVER,this.bigger);
-         this.right_mc.addEventListener(MouseEvent.ROLL_OUT,this.smaller);
-         this.wrong_mc.addEventListener(MouseEvent.ROLL_OUT,this.smaller);
-         this.replay_mc.addEventListener(MouseEvent.CLICK,this.timercontrol);
-      }
-      
-      function frame1() : *
-      {
-         stop();
       }
       
       public function visibalilty() : *

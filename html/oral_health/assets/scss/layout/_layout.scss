@@ -1,0 +1,240 @@
+.container {
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+
+    @include flex-center();
+
+    @include breakpoint(md, max) {
+        overflow: auto;
+        padding: 0;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+}
+@keyframes show {
+    0% {
+        width: 0;
+        height: 0;
+    }
+}
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes bounce {
+    100% {
+        transform: scale(1.05);
+    }
+}
+@keyframes bounce2 {
+    100% {
+        transform: scale(0.95);
+    }
+}
+@keyframes bounce-twice {
+    0% {
+        transform: scale(0);
+    }
+    30% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(.75);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.figure {
+    margin-bottom: 0;
+}
+.bg-sound {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+.wrap {
+    position: relative;
+    width: 600px;
+    animation: fade-in .5s forwards;
+
+    .wrap-outer--begin & {
+        transform: translateX(-100%);
+        transition: 1s transform;
+    }
+    img {
+        max-width: 100%;
+
+    }
+    &__start,
+    &__title,
+    &__bg-deco {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &__start {
+    }
+    &__title {
+        top: 115px;
+        left: 158px;
+        display: none;
+
+        &.bounce {
+            animation-duration: 1s!important;
+        }
+    }
+    &__bg-deco {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -54%);
+        z-index: 1;
+
+        .bg-deco {
+            background-image: url("../images/bg_deco.png");
+            background-size: cover;
+            background-position: center;
+            mask: url("../images/bg_deco.svg");
+            width: 600px;
+            height: 280px;
+            animation: show .75s forwards ease-in-out;
+            display: none;
+            
+            &-2 {
+                background-image: url("../images/wrap_bg.png");
+                display: block;
+            }
+        }
+    }
+    &-outer {
+        position: relative;
+        overflow: hidden;
+
+        @include breakpoint(md, max) {
+            min-width: 600px;
+        }
+    }
+    &__man {
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    &__question {
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    &__transition {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 100%;
+        transition: transform 1s, opacity .5s;
+        z-index: 3;
+        pointer-events: none;
+
+        img {
+            animation: rotate 3s infinite linear;
+        }
+        &.show {
+            transform: translate(-50%, -50%) scale(1.5);
+            pointer-events: auto;
+        }
+        &.hide {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+        }
+    }
+    &-2 {
+        position: absolute;
+        top: 0;
+        left: -2px;
+        transform: translateX(100%);
+
+        .wrap-outer--begin & {
+            transform: translateX(0);
+        }
+    }
+}
+[class*="frame-"] {
+    display: none;
+}
+@for $i from 2 through 16 {
+
+    .frame-#{$i} {
+        [data-frame="#{$i}"] & {
+            display: block;
+        }
+    }
+    [data-frame="#{$i}"] {
+        @if($i > 12) {
+            .yes-button,
+            .no-button {
+                display: none;
+            }
+            .replay-button {
+                display: block;
+            }
+            .wrap__question {
+                width: 420px;
+            }
+        }
+    }
+}
+
+.start-button {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    right: 1rem;
+    bottom: 80px;
+    filter: drop-shadow(2px 2px 2px rgba(#fff, .5));
+    display: none;
+    animation: bounce-twice .75s forwards ease-in-out;
+    z-index: 2;
+}
+.replay-button {
+    position: absolute;
+    bottom: 5px;
+    right: 1rem;
+    display: none;
+    z-index: 2
+}
+.yes-button,
+.no-button {
+    position: absolute;
+    z-index: 2;
+
+    img {
+        width: 70px;
+        transition: transform .4s;
+    }
+    &:hover img {
+        transform: scale(1.1);
+    }
+}
+.yes-button {
+    width: 70px;
+    top: 100px;
+    right: 100px;
+}
+.no-button {
+    width: 65px;
+    top: 180px;
+    right: 100px;
+}
+
+.bounce {
+    animation: bounce .5s infinite alternate ease-in-out!important;
+}
+.bounce2 {
+    animation: bounce2 .5s infinite alternate ease-in-out!important;
+}
