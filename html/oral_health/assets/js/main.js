@@ -1,4 +1,23 @@
 $(function(){
+    var sound_playing = false;
+    var sound = new Howl({
+        src: ['assets/sounds/bgm.mp3'],
+        loop: true,
+    });
+    window.addEventListener('click', function(event){
+        if (!sound_playing) {
+            sound.play();
+            sound_playing = true;
+        } else {
+            console.log(event)
+            var is_wrap = $(event.target).closest(".wrap").length;
+            if (!is_wrap) {
+                sound.stop();
+                sound_playing = false;
+            }
+        }
+    });
+
     calVh();
     window.addEventListener("resize", calVh);
 

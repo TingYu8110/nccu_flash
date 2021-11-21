@@ -1,0 +1,222 @@
+/// Color system
+$bg-light: #FFEFBF;
+$bg-dark: #F4DD96;
+$bg-lighter: #FDF1CD;
+$dark: #3F210F;
+$brown: #7C2F00;
+$brown-light: #A5643D;
+$brown-dark: #6A2B05;
+$orange: #DB5D00;
+$pink: #F4BEA4;
+
+// stylelint-disable 灰色階
+$white:    #fff !default;
+$gray-7:   #f7f7f7 !default;
+$gray-f4:  #f4f4f4 !default;
+$gray-e:   #eee !default;
+$gray-e1:  #e1e1e1 !default;
+$gray-e5:  #e5e5e5 !default;
+$gray-d:   #ddd !default;
+$gray-c:   #ccc !default;
+$gray-b:   #bbb !default;
+$gray-9:   #999 !default;
+$gray-8: #888888 !default;
+$gray-6:   #666 !default;
+$gray-3:   #333!default;
+$black:    #000 !default;
+$gray-70:  #707070 !default;
+
+// 自訂顏色
+$blue-main:      #002852 !default;
+$blue-light:     #033e7c !default;
+$blue-lighter:   #074d97 !default;
+$gray-blue:      #f3f7fb !default;
+$red: #D92F07 !default;
+$red-darker:     #C2310F !default;
+$orange:     	 #f0aa00 !default;
+$orange-darker:  #f08100 !default;
+$orange-text: 	 #F09400 !default;
+$pink: #ff5ca7 !default;
+
+// 色彩系統
+$primary:       $orange !default;
+$secondary:     $red !default;
+$third:     	$pink !default;
+$success:       #0cac00 !default;
+$info:          #888 !default;
+$warning:       $red !default;
+$warning-dark:  $red-darker !default;
+$disabled:      #ddd !default;
+
+// 社群用色
+$google:         #dc4e41 !default;
+$google_hover:   #c34236 !default;
+$line:           #09b900 !default;
+$line_hover:     #089601 !default;
+$facebook:       #3b5999 !default;
+$facebook_hover: #2b4782 !default;
+
+// 底色
+$bg-light:           $gray-f4 !default;
+$bg-dark:            $gray-3 !default;
+
+// 邊框
+$border-light:       $gray-f4 !default;
+$border-default:     $gray-d !default;
+$border-other:       $gray-70 !default;
+$border-dark:      $gray-3 !default;
+
+// 有使用的文字顏色
+// ------------------------------------------
+$text-default:       $brown !default;
+$text-light:		 $gray-8 !default;
+$text-dark:		     $dark !default;
+$text-default-hover: $orange !default;
+$text-primary:       $orange-text !default;
+$text-primary-hover: $orange-text !default;
+$text-secondary:     $red !default;
+
+// 按鈕顏色
+// ------------------------------------------
+
+$btn_colors: () !default;
+$btn_colors: map-merge((
+	default: (
+		background: $gray-6,
+		color: $white,
+		border-color: $gray-6,
+		color-hover: $white,
+		background-hover: $gray-3,
+		border-color-hover: $gray-3,
+	),
+	primary: (
+		color: $white,
+		background:   $brown,
+		color-hover: $white,
+		background-hover:   $brown-dark,
+	),
+	third: (
+		color: $text-dark,
+		background: $white,
+		border-color: $primary,
+		border-color-hover: $orange-darker,
+		color-hover:  $text-dark,
+		background-hover: $gray-e5,
+	),
+	fourth: (
+		color: $white,
+		background: #999,
+		border-color: #999,
+		background-hover: #888,
+		border-color-hover: #888,
+	),
+	share: (
+		color:        #343434,
+		background:   #eeedec,
+		border-color: #eeedec,
+		color-hover:        $white,
+		background-hover:   #222,
+		border-color-hover: #222,
+	),
+	disable: (
+		color: $text-light,
+		background: $gray-d,
+		border-color: $gray-d,
+	),
+	carousel: (
+		color: #888,
+		border-color: #bbb,
+		color-hover: $primary,
+		border-hover: $blue-lighter,
+	),
+	white: (
+		color: $white,
+		color-hover: $white,
+	),
+	warning: (
+		color: $white,
+		background: $warning,
+		color-hover: $white,
+		background-hover: $warning-dark,
+	),
+	event1: (
+		color: #fff,
+		background: #791a0a,
+		color-hover: #fff,
+		background-hover:  #791a0a,
+	),
+	event2: (
+			color: #fff,
+			background: #ef4839,
+			color-hover: #fff,
+			background-hover:  #ef4839,
+	),
+	product: (
+		color: #fff,
+		background: transparent,
+		color-hover: #fff,
+		background-hover:  transparent,
+	),
+	dark: (
+		color: #fff,
+		background: #000,
+		color-hover: #fff,
+		background-hover:  #000,
+	),
+	blue: (
+		color: #fff,
+		background: #0752c6,
+		color-hover: #fff,
+		background-hover: #073F93,
+	),
+), $btn_colors);
+
+
+// Grid breakpoints 目前在用的
+$grid-breakpoints: (
+	xs: 0,
+	sm: 600px,
+	md: 768px,
+	lg: 1280px,
+	xl: 1230px,
+	xxl: 1920px
+);
+
+// Grid containers bootstrap 網格
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px
+);
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters  修正bootstrap欄數和gutter.
+
+$grid-columns:                12;
+$grid-gutter-width:           30px;
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+$google-font: unquote("Rubik");
+$font-family-base: '#{$google-font}', '-apple-system', BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "微軟正黑體", "Microsoft JhengHei", sans-serif !default;
+$font-size-base:              1rem !default;
+$line-height-base:            1.2 !default;
+$line-height-lg:              1.4 !default;
+$line-height-xl:              1.7 !default;
+
+// 這區沒在使用
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
+
+$font-size-section-text:      16px !default;
+$line-height-section-text:    1.625 !default;
+
+// 動態
+$cubic-default: cubic-bezier(0.165, 0.84, 0.44, 1);
