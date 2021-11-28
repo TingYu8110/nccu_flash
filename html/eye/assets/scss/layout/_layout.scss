@@ -20,6 +20,36 @@
         opacity: 0;
         transform: translateY(10px);
     }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-in-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+    }
 }
 @keyframes show {
     0% {
@@ -27,17 +57,13 @@
         height: 0;
     }
 }
-@keyframes swing {
-    50% {
-        transform: translateX(10px);
-    }
-}
 @keyframes rotate {
     0% {
-        transform: scale(1.2);
+        opacity: 0;
+        transform: rotate(-45deg);
     }
     100% {
-        transform: scale(1.2) rotate(360deg);
+        opacity: 1;
     }
 }
 .figure {
@@ -50,8 +76,9 @@
     overflow: hidden;
 }
 .wrap {
+    margin-top: -2px;
     position: relative;
-    width: 600px;
+    width: 813px;
     animation: fade-in .5s forwards;
 
     .wrap-outer--begin & {
@@ -62,115 +89,62 @@
         max-width: 100%;
 
     }
-    &__start,
-    &__title,
-    &__bg-rotate,
-    &__scene-2,
-    &__white,
-    &__bg-deco {
+    &__title-1,
+    &__title-2,
+    &__title-3,
+    &__title-man,
+    &__white {
         position: absolute;
         top: 0;
         left: 0;
     }
-    &__white {
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        pointer-events: none;
-        z-index: 5;
-        opacity: 0;
-    }
-    &__start {
-    }
     &__title {
-    }
-    &__scene-2 {
-        z-index: 3;
-        display: none;
-    }
-    &__bg-deco,
-    &__bg-rotate, {
-        left: 50%;
-        top: 59%;
-        transform: translate(-50%, -54%);
-        z-index: 1;
-    }
-    &__bg-deco {
-        width: 115%;
-        max-width: none !important;
-        z-index: 1;
+        &-1 {
+            top: 200px;
+            left: 275px;
+            animation: fade-in-right .75s forwards;
+        }
+        &-2 {
+            top: 280px;
+            left: 376px;
+            opacity: 0;
+            animation: fade-in-right .75s 0.25s forwards;
+        }
+        &-3 {
+            top: 280px;
+            left: 276px;
+            opacity: 0;
+            transform-origin: right bottom;
+            animation: rotate .75s 0.25s forwards;
+        }
+        &-man {
+            top: 142px;
+            left: 61px;
+            animation: fade-in-down 1.25s forwards;
 
-        img {
-            transform: translateX(-10px);
-            animation: swing infinite alternate 2.5s linear;
         }
     }
-    &__bg-rotate, {
-        z-index: 0;
-        width: 100%;
-        height: 253px;
-        top: calc(50% - 2px);
-        transform: translate(-50%, -50%);
-        overflow: hidden;
-
-        &-img {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            animation: rotate infinite 5s linear;
+    [class*="wrap__title-"],
+    .start-button {
+        .wrap-outer--fading & {
+            animation: none;
+            opacity: 1;
         }
-    }
-    &__title,
-    &__bg-deco,
-    &__bg-rotate-img{
-        display: none;
     }
     &-outer {
+        height: 600px;
         position: relative;
         overflow: hidden;
 
         @include breakpoint(md, max) {
-            min-width: 600px;
+            min-width: 813px;
         }
     }
     &__man {
         position: absolute;
         left: 50%;
-        top: 55%;
-        transform: translate(-50%, -50%) scale(1.5);
-    }
-    &__question {
-        position: absolute;
-        left: 50%;
-        top: 70%;
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    &__transition {
-        position: absolute;
-        left: 63%;
-        top: 49.5%;
-        transform: translate(-50%, -50%) scale(2.12);
-        opacity: 0;
-        width: 100%;
-        transition: transform 1s, opacity .5s;
-        z-index: 3;
-        pointer-events: none;
-
-        img {
-            //animation: rotate 3s infinite linear;
-        }
-        &.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(2.12);
-            pointer-events: all;
-        }
-        &.hide {
-            transform: translate(-50%, -50%) scale(2.12);
-            opacity: 0;
-        }
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
     }
     &-2 {
         position: absolute;
@@ -184,9 +158,10 @@
     }
 }
 [class*="frame-"] {
+    max-width: none!important;
     display: none;
 }
-@for $i from 1 through 18 {
+@for $i from 1 through 21 {
 
     .frame-#{$i} {
         [data-frame="#{$i}"] & {
@@ -194,7 +169,7 @@
         }
     }
     [data-frame="#{$i}"] {
-        @if($i > 15) {
+        @if($i > 18) {
             .yes-button,
             .no-button {
                 display: none;
@@ -203,72 +178,41 @@
                 display: block;
             }
             .wrap__man {
-                top: 49.7%;
-                height: 251px;
-                overflow: hidden;
                 width: 100%;
-                transform: translate(-50%, -50%) scale(1.02);
-
-                img {
-                    position: relative;
-                    top: -196px;
-                }
+                transform: translate(-50%, -50%);
             }
-            .wrap__question {
-                width: 420px;
-            }
-        }
-    }
-}
-.title-button {
-    position: absolute;
-    top: 49.5%;
-    left: 50.8%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 214px;
-    height: 205px;
-    display: block;
-
-    .wrap__title {
-        transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    &:hover {
-        .wrap__title {
-            transform: scale(1.1);
         }
     }
 }
 .start-button {
     position: absolute;
-    width: 71px;
-    height: 24px;
-    right: 1rem;
-    bottom: 80px;
-    filter: drop-shadow(2px 2px 2px rgba(#fff, .5));
-    display: none;
-    transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 4;
-    animation: .5s fade-in-up forwards;
+    right: 80px;
+    bottom: 198px;
+    opacity: 0;
+    z-index: 1;
+    animation: fade-in-up .75s .5s forwards;
 
-    &:hover {
+    img {
+        transition: .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    &:hover img {
         transform: scale(1.1);
     }
 }
 .replay-button {
     position: absolute;
-    bottom: 84px;
-    right: 1rem;
+    bottom: 25px;
+    right: 16px;
     display: none;
     z-index: 2;
-    width: 100px;
+    width: 129px;
 }
 .yes-button,
 .no-button {
     position: absolute;
     z-index: 2;
-    width: 80px;
-    height: 80px;
+    width: 138px;
+    height: 138px;
 
     img {
         transition: transform .4s;
@@ -278,11 +222,11 @@
     }
 }
 .yes-button {
-    top: 100px;
-    right: 2rem;
+    top: 120px;
+    right: 2.1rem;
 }
 .no-button {
     //width: 65px;
-    top: 200px;
+    top: 300px;
     right: 28px;
 }
