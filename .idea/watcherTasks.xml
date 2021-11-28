@@ -22,7 +22,7 @@
       <envs />
     </TaskOptions>
     <TaskOptions isEnabled="true">
-      <option name="arguments" value="--use autoprefixer --autoprefix.browsers &quot;ie11, last 2 versions&quot; --autoprefixer.grid &quot;true&quot; d $FileDir$\$FileName$" />
+      <option name="arguments" value="$FileDir$\$FileName$ --use autoprefixer -d $FileDir$\" />
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
       <option name="exitCodeBehavior" value="ERROR" />
@@ -34,7 +34,7 @@
         <array />
       </option>
       <option name="outputFromStdout" value="false" />
-      <option name="program" value="$USER_HOME$/AppData/Roaming/npm/postcss.cmd" />
+      <option name="program" value="postcss" />
       <option name="runOnExternalChanges" value="true" />
       <option name="scopeName" value="Project Files" />
       <option name="trackOnlyRoot" value="false" />
